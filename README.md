@@ -1,9 +1,12 @@
 # Kubernetes playground using k0s and k0sctl
 
+:warning: This whole guide has only been tested on linux-x64. If issues are found on other architectures, then please raise a pull request.
+
 ## Prerequisite
 
-- Make sure your user or group has password-less sudo configured through /etc/sudoers. Example: `%wheel  ALL=(ALL)       NOPASSWD: ALL`
+- Make sure your user or group has password-less sudo configured through /etc/sudoers. Linux example: `%wheel  ALL=(ALL)       NOPASSWD: ALL`
 - Make sure sshd service is started: `sudo systemctl start sshd.service`.
+- Make sure you have a SSH key pair. If you do not have a key pair, then you can generate it with: `ssh-keygen`
 
 ## Install k0sctl
 
@@ -19,7 +22,7 @@ k0sctl version
 ```bash
 export K0S_CLUSTER=playground
 
-k0sctl init --k0s --cluster-name ${K0S_CLUSTER} --user $LOGNAME localhost > k0sctl-${K0S_CLUSTER}.yaml
+k0sctl init --k0s --cluster-name ${K0S_CLUSTER} --user $(logname) localhost > k0sctl-${K0S_CLUSTER}.yaml # Or replace 'localhost' with an actual hostname or IP address
 sed -i 's/^.*role: controller$/    role: "controller+worker"/g' k0sctl-${K0S_CLUSTER}.yaml
 k0sctl apply --config k0sctl-${K0S_CLUSTER}.yaml
 ```
