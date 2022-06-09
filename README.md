@@ -23,4 +23,5 @@ export K0S_CLUSTER=playground
 mkdir -p ~/.kube
 k0sctl kubeconfig --config k0sctl-${K0S_CLUSTER}.yaml > ~/.kube/${K0S_CLUSTER}.config
 chmod 600 ~/.kube/${K0S_CLUSTER}.config
+export KUBECONFIG=~/.kube/${K0S_CLUSTER}.config
 ```
