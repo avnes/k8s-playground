@@ -1,6 +1,6 @@
 # Kubernetes playground using k0s and k0sctl
 
-## Pre-requisites
+## Prerequisite
 
 - Make sure your user or group has password-less sudo configured through /etc/sudoers. Example: `%wheel  ALL=(ALL)       NOPASSWD: ALL`
 - Make sure sshd service is started: `sudo systemctl start sshd.service`.
